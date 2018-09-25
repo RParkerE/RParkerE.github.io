@@ -1,0 +1,413 @@
+
+* {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    background: #5AF;
+    background: radial-gradient(center, ellipse cover, #5AF 37%, #25A 100%);
+    background: -webkit-gradient(radial, center center, 0, center center, 100%, color-stop(37%, #5AF), color-stop(100%, #25A));
+    background: radial-gradient(center, ellipse cover, #5AF 37%, #25A 100%);
+    background: radial-gradient(center, ellipse cover, #5AF 37%, #25A 100%);
+    background: radial-gradient(center, ellipse cover, #5AF 37%, #25A 100%);
+    background: radial-gradient(ellipse at center, #5AF 37%, #25A 100%);
+    font-family: "Open Sans", sans-serif;
+    text-shadow: 0 0 1px #5AF, 0 0 3px #017833;
+    color: white;
+    padding: 0 0 100px;
+    font-size: 16;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px 40px 40px
+}
+
+a {
+    color: white
+}
+
+sup {
+    font-size: 11px
+}
+
+header {
+    padding: 20px;
+    background: #222;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    height: 220px;
+    z-index: 1;
+    -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
+    text-shadow: 1px 1px 0 #000
+}
+
+#sup_text {
+    margin: 2px auto;
+    position: relative
+}
+
+#sup_text .print {
+    position: absolute;
+    top: -30px;
+    right: 165px;
+    float: none;
+    margin: 0;
+    padding-right: 40px;
+    font-size: 12px;
+    line-height: 44px;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+    opacity: 0.5
+}
+
+#sup_text .print .ico {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-position: -428px -4px
+}
+
+#sup_text .pdf {
+    position: absolute;
+    top: -30px;
+    right: 0;
+    float: none;
+    margin: 0;
+    padding-right: 40px;
+    font-size: 12px;
+    line-height: 44px;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+    opacity: 0.5
+}
+
+#sup_text .pdf .ico {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-position: -368px -404px
+}
+
+#personal {
+    width: 720px;
+    text-aling: center;
+    margin: 0 auto
+}
+
+#personal .name {
+    float: left;
+    position: relative
+}
+
+#personal h1 {
+    font-size: 40px;
+    margin-bottom: 10px
+}
+
+#personal h2 {
+    font-family: "Georgia", Serif;
+    font-size: 22px;
+    font-weight: normal;
+    font-style: italic;
+    color: #999
+}
+
+#personal h3 {
+    font-family: "Georgia", Serif;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    color: #666
+}
+
+#personal dl {
+    float: right;
+    font-size: 11px;
+    margin-top: 50px
+}
+
+#personal dl dt {
+    color: #666;
+    font-size: 12px
+}
+
+#personal dd {
+    margin: 0 0 0 45px;
+    line-height: 20px;
+}
+
+.experience {
+    margin-top: 210px
+}
+
+article h1 {
+    font-size: 32px;
+    font-weight: bold;
+    border-bottom: solid 3px white;
+    margin-top: 30px
+}
+
+.info h1 {
+    display: none
+}
+
+.info section {
+    padding-left: 35px
+}
+
+.carrer {
+    margin-top: 10px
+}
+
+.career h1 span.ico {
+    background-position: 232px -4px
+}
+
+.career .careerhistory {
+    padding: 0 20px
+}
+
+.career .careerhistory section {
+    position: relative;
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #E2F3FF;
+    margin-bottom: 1rem;
+}
+
+.career .careerhistory section:last-child {
+    border-bottom: 0
+}
+
+.career .careerhistory section h2 {
+    position: absolute;
+    top: -7px;
+    right: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+    filter: alpha(opacity=20);
+    opacity: 0.2;
+    font-style: italic;
+    margin: 0;
+    padding: 0;
+    font-shadow: 0 0 0;
+    font-size: 18px
+}
+
+.career .careerhistory section p {
+    font-size: 18px;
+    line-height: 10px;
+    padding: 0 0 0 0;
+    -moz-transition: padding 0.8s ease-in-out;
+    -o-transition: padding 0.8s ease-in-out;
+    -webkit-transition: padding 0.8s ease-in-out;
+    transition: padding 0.8s ease-in-out
+}
+
+.career .careerhistory section p:nth-child(2) {
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s
+}
+
+.career .careerhistory section p:nth-child(3) {
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s
+}
+
+.career .careerhistory section p.info {
+    font-size: 13px
+}
+
+.career .careerhistory section:hover p {
+    padding-left: 10px
+}
+
+.cloud ul {
+    padding: 0 20px
+}
+
+.cloud ul li {
+    position: relative;
+    list-style: none;
+    -moz-transition: -moz-transform 0.8s ease-in-out, text-shadow 0.2s ease-in-out;
+    -o-transition: -o-transform 0.8s ease-in-out, text-shadow 0.2s ease-in-out;
+    -webkit-transition: -webkit-transform 0.8s ease-in-out, text-shadow 0.2s ease-in-out;
+    transition: transform 0.8s ease-in-out, text-shadow 0.2s ease-in-out;
+    float: left;
+    margin: 0 30px 15px 0;
+    text-align: center;
+    line-height: 31px
+}
+
+.cloud ul li.w1 {
+    font-size: 10px
+}
+
+.cloud ul li.w2 {
+    font-size: 13px
+}
+
+.cloud ul li.w3 {
+    font-size: 16px
+}
+
+.cloud ul li.w4 {
+    font-size: 19px
+}
+
+.cloud ul li.w5 {
+    font-size: 22px
+}
+
+.cloud ul li.w6 {
+    font-size: 25px
+}
+
+.cloud ul li.w7 {
+    font-size: 28px
+}
+
+.cloud ul li.w8 {
+    font-size: 31px
+}
+
+.cloud ul li.w9 {
+    font-size: 34px
+}
+
+.cloud ul li:hover {
+    text-shadow: 0 0 25px white
+}
+
+.cloud ul li sup {
+    font-size: 9px;
+    vertical-align: top;
+    line-height: 19px
+}
+
+.knowledge h1 span.ico {
+    background-position: -10px -4px
+}
+
+.workwith h1 span.ico {
+    background-position: -192px -4px
+}
+
+.languages h1 span.ico {
+    background-position: -310px -4px
+}
+
+.learn h1 span.ico {
+    background-position: -68px -352px
+}
+
+/* For modern browsers */
+
+.cf:before,
+.cf:after {
+    content: "";
+    display: table
+}
+
+.cf:after {
+    clear: both
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+
+.cf {
+    zoom: 1
+}
+
+@media print {
+    body {
+        width: auto;
+        max-width: auto;
+        height: 100%;
+        background-color: white;
+        color: black;
+        text-shadow: none;
+        font-size: 16px;
+        font-family: sans-serif
+    }
+    body a:link,
+    body a:visited {
+        text-decoration: none;
+        background-color: black
+    }
+    header .print,
+    header .pdf {
+        display: none
+    }
+    .career .careerhistory section {
+        border-bottom: 1px solid black
+    }
+    .career .careerhistory section p {
+        font-size: 14px
+    }
+    .career .careerhistory section:hover p {
+        padding-left: 10px
+    }
+    article h1 {
+        font-size: 18px
+    }
+    .cloud ul li {
+        line-height: 16px
+    }
+    .cloud ul li.w1 {
+        font-size: 12px
+    }
+    .cloud ul li.w2 {
+        font-size: 12px
+    }
+    .cloud ul li.w3 {
+        font-size: 12px
+    }
+    .cloud ul li.w4 {
+        font-size: 12px
+    }
+    .cloud ul li.w5 {
+        font-size: 12px
+    }
+    .cloud ul li.w6 {
+        font-size: 12px
+    }
+    .cloud ul li.w7 {
+        font-size: 12px
+    }
+    .cloud ul li.w8 {
+        font-size: 12px
+    }
+    .cloud ul li.w9 {
+        font-size: 12px
+    }
+    .cloud ul li sup {
+        line-height: 16px
+    }
+    #codepen-footer {
+        visibility: hidden
+    }
+}
+
+.ico {
+    background-position: -247px -11px;
+    display: block;
+    float: left;
+    width: 34px;
+    height: 34px;
+    overflow: hidden;
+    text-indent: -400px;
+}
+
+.ico.work {
+    background-position: -428px -60px;
+    background-position: -131px -106px
+}

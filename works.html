@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Works</title>
+<meta name="description" content="Robert Ellwanger" />
+<meta name="keywords" content="RParkerE, Robert Ellwanger, Parker Ellwanger, Ellwanger" />
+<meta name="author" content="Robert Ellwanger" />
+<link rel="shortcut icon" href="../favicon.ico">
+
+<link href="static/css/style.css" type="text/css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="static/css/normalize_2.css" />
+<link rel="stylesheet" type="text/css" href="static/css/demo.css" />
+<link rel="stylesheet" type="text/css" href="static/css/icons.css" />
+<link rel="stylesheet" type="text/css" href="static/css/style3.css" />
+<script src="static/js/modernizr.custom.js"></script>
+<link rel="stylesheet" href="static/css/normalize.css">
+<link rel="stylesheet" href="static/css/layout.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/jquery.mixitup.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var filterList = {
+            init: function () {
+                $('#portfoliolist').mixItUp({
+                    selectors: {
+                        target: '.portfolio',
+                        filter: '.filter'
+                    },
+                    load: {
+                        filter: '.python'
+                    }
+                });
+            }
+        };
+        filterList.init();
+    });
+</script>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Projects</h1>
+        <div class="panel-works" style="display: block;">
+            <div class="container">
+                <ul id="filters" class="clearfix">
+                    <li><span class="filter active" data-filter=".java, .python, .c, .cpp, .web, .apps, .presentation">All</span></li>
+                    <li><span class="filter" data-filter=".java">Java</span></li>
+                    <li><span class="filter" data-filter=".python">Python</span></li>
+                    <li><span class="filter" data-filter=".c">C</span></li>
+                    <!-- <li><span class="filter" data-filter=".theme">Themes</span></li> -->
+                    <li><span class="filter" data-filter=".cpp">C++</span></li>
+                    <!--<li><span class="filter" data-filter=".docker">Docker Images</span></li>-->
+                    <li><span class="filter" data-filter=".web">Web</span></li>
+                    <li><span class="filter" data-filter=".apps">Apps</span></li>
+                    <li><span class="filter" data-filter=".presentation">Presentations</span></li>
+                </ul>
+                <div id="portfoliolist">
+                    <!--
+                    <div class="portfolio project" data-cat="project">
+                        <a href="https://github.com/anistark/ghost">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/ghost?set=set3" alt="Ghost" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Online Coding Editor
+                                        <span class="text-category">PROJECT</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio package" data-cat="package">
+                        <a href="https://pypi.python.org/pypi/drc">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/django_react_comments?set=set3" alt="Django React Comments" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Django Comments
+                                        <span class="text-category">PACKAGE</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio project" data-cat="project">
+                        <a href="https://github.com/anistark/logging_server">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/logging_server?set=set3" alt="Logging Server" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Central Logging
+                                        <span class="text-category">PROJECT</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio boilerplate" data-cat="boilerplate">
+                        <a href="https://github.com/anistark/neem">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/neem?set=set3" alt="NEEM" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Node Express Ejs Mongoose
+                                        <span class="text-category">BOILERPLATE</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio boilerplate" data-cat="boilerplate">
+                        <a href="https://github.com/anistark/nhsm">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/nhsm?set=set3" alt="NHSM" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Node Hapi Swig Mongoose
+                                        <span class="text-category">BOILERPLATE</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio boilerplate" data-cat="boilerplate">
+                        <a href="https://github.com/anistark/snhs">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/snhs?set=set3" alt="SNHS" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Sequelize Node Hapi Swig
+                                        <span class="text-category">BOILERPLATE</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio package" data-cat="package">
+                        <a href="https://www.npmjs.com/package/paystripe">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/paystripe?set=set3" alt="Stripe integration package for NodeJs" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Stripe for NodeJs
+                                        <span class="text-category">PACKAGE</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio project" data-cat="project">
+                        <a href="https://github.com/anistark/twil">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/twil?set=set3" alt="Twil" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Web Browser in Visual Basic
+                                        <span class="text-category">PROJECT</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio package" data-cat="package">
+                        <a href="https://pypi.python.org/pypi/RedisScheduler">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/redis_scheduler?set=set3" alt="Redis Scheduler" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Python Redis Scheduler
+                                        <span class="text-category">PACKAGE</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio project" data-cat="project">
+                        <a href="https://github.com/anistark/discuter">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/discuter?set=set3" alt="Discuter" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Chat Socket.io Backend
+                                        <span class="text-category">PROJECT</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio project" data-cat="project">
+                        <a href="https://github.com/anistark/commenting-react">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/commenting_react?set=set3" alt="CommentingReact" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Comments Module in React
+                                        <span class="text-category">PROJECT</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio theme" data-cat="theme">
+                        <a href="https://github.com/anistark/locus">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/locus?set=set3" alt="Locus" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Telegram Desktop Theme
+                                        <span class="text-category">THEME</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio app" data-cat="app">
+                        <a href="https://github.com/anistark/kup">
+                            <div class="portfolio-wrapper">
+                                <img src="/assets/img/kup.jpg" alt="KUP" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Android Music Player
+                                        <span class="text-category">APP</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio app" data-cat="app">
+                        <a href="https://marketplace.firefox.com/app/calculo">
+                            <div class="portfolio-wrapper">
+                                <img src="/assets/img/calculo.jpg" alt="Calculator" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        FxOs Calculator
+                                        <span class="text-category">APP</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio app" data-cat="app">
+                        <a href="https://marketplace.firefox.com/app/rezolutie">
+                            <div class="portfolio-wrapper">
+                                <img src="/assets/img/rezolutie.jpg" alt="Rezolutie" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        FxOS New Year Resolution
+                                        <span class="text-category">APP</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio app" data-cat="app">
+                        <a href="https://github.com/anistark/TheEye">
+                            <div class="portfolio-wrapper">
+                                <img src="/assets/img/eye.jpg" alt="The Eye" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Android Find Your Phone
+                                        <span class="text-category">APP</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio web" data-cat="web">
+                        <a href="#">
+                            <div class="portfolio-wrapper">
+                                <img src="/assets/img/sristi.jpg" alt="Sristi 2013" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        JGEC Tech Fest
+                                        <span class="text-category">WEB</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio web" data-cat="web">
+                        <a href="#">
+                            <div class="portfolio-wrapper">
+                                <img src="/assets/img/jeclat.png" alt="Jeclat 2014" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        JGEC Annual Fest
+                                        <span class="text-category">WEB</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio product" data-cat="product">
+                        <a href="http://ascnd.io">
+                            <div class="portfolio-wrapper">
+                                <img src="/assets/img/ascendlogo.png" alt="Ascend" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Send to Kindle
+                                        <span class="text-category">PRODUCT</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio docker" data-cat="docker">
+                        <a href="https://hub.docker.com/r/anistark/python/">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/docker_python?set=set3" alt="Ascend" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Python Image
+                                        <span class="text-category">DOCKER</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio presentation" data-cat="presentation">
+                        <a href="http://anistark.github.io/talks/nodeIntroduction">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/nodeJsIntroPpt?set=set3" alt="NodeJs Intro Presentation" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        NodeJS Introduction
+                                        <span class="text-category">PRESENTATION</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio boilerplate" data-cat="boilerplate">
+                        <a href="http://github.com/anistark/go-boilerplate">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/go_boilerplate?set=set3" alt="Go Boilerplate" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Go WebApp Docker
+                                        <span class="text-category">BOILERPLATE</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio demo" data-cat="demo">
+                        <a href="http://blockchaindemo.anirudha.org">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/blockchain_demo?set=set3" alt="Blockchain Demo" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Blockchain Demo
+                                        <span class="text-category">DEMO</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio presentation" data-cat="presentation">
+                        <a href="http://anistark.github.io/talks/blockchainIntro">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/blockchainIntroPpt?set=set3" alt="Blockchain Intro Presentation" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Blockchain Introduction
+                                        <span class="text-category">PRESENTATION</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio demo" data-cat="demo">
+                        <a href="http://anistark.github.io/cryptography">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/cryptographyDemo?set=set3" alt="Cryptography Demo" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Cryptography Demo
+                                        <span class="text-category">DEMO</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio presentation" data-cat="presentation">
+                        <a href="http://anistark.github.io/talks/decentralising-with-ethereum">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/decentralisingWithEthereumPpt?set=set3" alt="Decentralising with Ethereum Presentation" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Decentralising with Ethereum
+                                        <span class="text-category">PRESENTATION</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio boilerplate" data-cat="boilerplate">
+                        <a href="https://anistark.github.io/neptune">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/neptune?set=set3" alt="Angular Boilerplate" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Angular Boilerplate
+                                        <span class="text-category">BOILERPLATE</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio product" data-cat="product">
+                        <a href="https://bluebird.anirudha.org">
+                            <div class="portfolio-wrapper">
+                                <img src="https://i.imgur.com/XSdDpPO.jpg" alt="Anonymous Reporting on Blockchain" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Anonymous Reporting on Blockchain
+                                        <span class="text-category">PRODUCT</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio presentation" data-cat="presentation">
+                        <a href="http://anistark.github.io/talks/bitcoinIntro">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/bitcoin_intro?set=set3" alt="Bitcoin and Blockchain" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Bitcoin and Blockchain
+                                        <span class="text-category">PRESENTATION</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="portfolio presentation" data-cat="presentation">
+                        <a href="http://anistark.github.io/talks/tangleIntro">
+                            <div class="portfolio-wrapper">
+                                <img src="https://robohash.org/tangle_intro?set=set3" alt="Beyond Blockchain" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        Beyond Blockchain - An Introduction to IOTA Tangle
+                                        <span class="text-category">PRESENTATION</span>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+        <nav id="bt-menu" class="bt-menu">
+    <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+    <ul>
+        <li><a href="index.html" class="bt-icon icon-user-outline">Home</a></li>
+        <li><a href="/" class="bt-icon icon-flag">My Works</a></li>
+        <li><a href="blog.html" class="bt-icon icon-newspaper">My Blog</a></li>
+        <li><a href="courses.html" class="bt-icon icon-browser">Courses</a></li>
+        <li><a href="resume.html" class="bt-icon icon-star">My Resume</a></li>
+        <li><a href="cpp.html" class="bt-icon icon-bubble">C++</a></li>
+    </ul>
+</nav>
+
+    </div>
+</body>
+<script src="static/js/classie.js"></script>
+<script src="static/js/borderMenu.js"></script>
+
+</html>
