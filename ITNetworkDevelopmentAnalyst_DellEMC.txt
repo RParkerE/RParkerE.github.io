@@ -1,0 +1,4 @@
+Worked on the design, installation, management, and support of organization-wide networks.
+Maintained hardware and software, analyzed technical issues, and ensured operability of the networks.
+Delivered Tier 1 and 2 network ticketing support.
+Managed, developed, and supported code bases relating to the automation of the network and related work.
