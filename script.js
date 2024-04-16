@@ -129,7 +129,7 @@ function getDirectoryPath() {
 }
 
 function fetchAndDisplayFile(file) {
-    fetch(`https://raw.githubusercontent.com/RParkerE/RParkerE.github.io/${file}`)
+    fetch(`https://github.com/RParkerE/RParkerE.github.io/blob/main/${file}`)
         .then(response => response.text())
         .then(data => {
             outputDiv.innerHTML += `
