@@ -59,7 +59,6 @@ function changeDirectory(dirName) {
 function catFile(fileName) {
     if (currentDirectory[fileName] && typeof currentDirectory[fileName] === 'string') {
         let content = currentDirectory[fileName];
-        // Add clickable links for GitHub projects
         if (fileName === 'github_projects.txt') {
             content = content.replace(/(https:\/\/github\.com\/\S+)/g, '<span class="link" onclick="window.open(\'$1\', \'_blank\')">$1</span>');
         }
@@ -88,6 +87,22 @@ function processCommand(command) {
     }
 }
 
+function autocomplete(input) {
+    const [cmd, arg] = input.split(' ');
+    
+    if (cmd === 'cd' || cmd === 'cat') {
+        const matches = Object.keys(currentDirectory).filter(item => item.startsWith(arg || ''));
+        if (matches.length === 1) {
+            return `${cmd} ${matches[0]}`;
+        } else if (matches.length > 1) {
+            printOutput(matches.join('  '));
+            return input;
+        }
+    }
+    
+    return input;
+}
+
 userInput.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
         const command = this.value;
@@ -95,6 +110,9 @@ userInput.addEventListener('keydown', function(event) {
         const result = processCommand(command);
         if (result) printOutput(result);
         this.value = '';
+    } else if (event.key === 'Tab') {
+        event.preventDefault();
+        this.value = autocomplete(this.value);
     }
 });
 
