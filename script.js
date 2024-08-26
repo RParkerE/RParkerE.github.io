@@ -117,5 +117,5 @@ userInput.addEventListener('keydown', function(event) {
 });
 
 // Initial message
-printOutput('Welcome to the Terminal Portfolio! Type "help" for available commands.');
+printOutput('Welcome to Parker Ellwanger\'s Terminal Portfolio! Type "help" for available commands.');
 updatePrompt();
