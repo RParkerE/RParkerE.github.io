@@ -1,1 +1,0 @@
-Maintain and triage machine and test related issues. Develop and create solutions to automate the monitoring and triaging of issues resulting from failed tests or hardware problems. Implement more secure channels and pipelines for projects and tests.

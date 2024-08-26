@@ -1,211 +1,103 @@
 const terminal = document.getElementById('terminal');
-const outputDiv = document.getElementById('output');
-const commandInput = document.getElementById('command-input');
+const output = document.getElementById('output');
+const userInput = document.getElementById('user-input');
 
-// Current directory and directory stack
-let currentDirectory = '~';
-const directoryStack = [];
-
-commandInput.addEventListener('keyup', function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-        const command = commandInput.value.trim();
-        executeCommand(command);
+const fileSystem = {
+    'home': {
+        'about.txt': 'Welcome to my portfolio! I am an experienced IT professional with a focus on network development, automation, and system engineering.',
+        'projects': {
+            'github_projects.txt': 'My GitHub Projects:\n\n1. For Fun 1\n   Description: This is a repository full of small little projects I have decided to build to learn and become more efficient and skilled in a variety of languages.\n   Link: https://github.com/RParkerE/ForFun\n\n2. LiFi 2\n   Description: My capstone project for ECE. Design and develop the software and hardware for an Arduino based LiFi device.\n   Link: https://github.com/RParkerE/LiFi-With-Arduino\n\n3. Autonomous Driving 3\n   Description: Introductory project to familiarize myself with the workings of Autonomous Vehicles\n   Link: https://github.com/RParkerE/AutonomousDriving'
+        },
+        'resume': {
+            'AutomationTestAndSystemEngineer_NVIDIA.txt': 'Maintain and triage machine and test related issues. Develop and create solutions to automate the monitoring and triaging of issues resulting from failed tests or hardware problems. Implement more secure channels and pipelines for projects and tests.',
+            'ITNetworkDevelopmentAnalyst_DellEMC.txt': 'Worked on the design, installation, management, and support of organization-wide networks.\nMaintained hardware and software, analyzed technical issues, and ensured operability of the networks.\nDelivered Tier 1 and 2 network ticketing support.\nManaged, developed, and supported code bases relating to the automation of the network and related work.'
+        },
+        'contact.txt': 'Email: parker.ellwanger@gmail.com\nLinkedIn: linkedin.com/in/robert-ellwanger-2a39a1a6'
     }
-});
+};
+
+let currentDirectory = fileSystem.home;
+let currentPath = '~';
 
 function updatePrompt() {
-    const prompt = document.querySelector('.prompt');
-    const directoryPathElement = document.querySelector('.directory-path');
-    const promptLine = document.querySelector('#prompt-line');
-    prompt.textContent = 'guest@yourwebsite:';
-    directoryPathElement.textContent = getDirectoryPath();
-    commandInput.value = ''; // Clear input value
+    document.getElementById('prompt').textContent = `guest@portfolio:${currentPath}$`;
 }
 
-function executeCommand(command) {
-    const output = document.createElement('div');
-    output.innerHTML = `<span class="prompt">guest@yourwebsite:</span><span class="directory-path">${getDirectoryPath()}</span><span class="input">$</span> ${command}`;
-    outputDiv.appendChild(output);
-
-    // Handle different commands here
-    const parts = command.split(' ');
-    const cmd = parts[0].toLowerCase();
-    const arg = parts[1];
-
-    switch (cmd) {
-        case 'help':
-            outputDiv.innerHTML += `
-                <div>Available commands:</div>
-                <div>- ls: List directories</div>
-                <div>- cd <directory>: Change directory</div>
-                <div>- cat <file>: View file contents</div>
-                <div>- clear: Clear the terminal</div>
-            `;
-            break;
-        case 'ls':
-            if (arg === undefined || arg === '') {
-                outputDirectoryContents(currentDirectory);
-            } else {
-                outputDiv.innerHTML += `
-                    <div>'ls' command does not accept arguments. Type 'ls' to see available directories.</div>
-                `;
-            }
-            break;
-        case 'cd':
-            if (arg === undefined || arg === '') {
-                outputDiv.innerHTML += `
-                    <div>'cd' command requires an argument. Usage: cd <directory></div>
-                `;
-            } else if (arg === '..') {
-                if (directoryStack.length === 0) {
-                    outputDiv.innerHTML += `
-                        <div>Cannot move up. Already at ~ directory.</div>
-                    `;
-                } else {
-                    currentDirectory = directoryStack.pop();
-                    outputDiv.innerHTML += `
-                        <div>Moved up to '${getDirectoryPath()}'</div>
-                    `;
-                }
-            } else if (arg === 'Resume' || arg === 'Projects' || arg === 'AboutMe') {
-                directoryStack.push(currentDirectory);
-                currentDirectory = arg;
-                outputDiv.innerHTML += `
-                    <div>Changed directory to '${getDirectoryPath()}'</div>
-                `;
-            } else {
-                outputDiv.innerHTML += `
-                    <div>Directory '${arg}' not found.</div>
-                `;
-            }
-            outputDiv.innerHTML = '';
-            break;
-        case 'cat':
-            if (arg === undefined || arg === '') {
-                outputDiv.innerHTML += `
-                    <div>'cat' command requires a file argument. Usage: cat <file></div>
-                `;
-            } else {
-                switch (currentDirectory) {
-                    case 'Resume':
-                        fetchAndDisplayFile(arg);
-                        break;
-                    case 'Projects':
-                        outputProjectFileContents(arg);
-                        break;
-                    case 'AboutMe':
-                        fetchAndDisplayFile(arg);
-                        break;
-                    default:
-                        outputDiv.innerHTML += `
-                            <div>Invalid directory '${currentDirectory}'</div>
-                        `;
-                }
-            }
-            break;
-        case 'clear':
-            outputDiv.innerHTML = '';
-            break;
-        default:
-            outputDiv.innerHTML += `
-                <div>'${cmd}' is not recognized as a command. Type 'help' for a list of available commands.</div>
-            `;
-    }
-
-    // Update the prompt
-    updatePrompt();
-
-    // Scroll to bottom of terminal
+function printOutput(text) {
+    const line = document.createElement('div');
+    line.className = 'output-line';
+    line.innerHTML = text;
+    output.appendChild(line);
     terminal.scrollTop = terminal.scrollHeight;
 }
 
-function getDirectoryPath() {
-    if (currentDirectory === '~') {
-        return '~';
+function listDirectory() {
+    return Object.keys(currentDirectory).map(item => {
+        const isDirectory = typeof currentDirectory[item] === 'object';
+        return `<span class="${isDirectory ? 'directory' : 'file'}">${item}</span>`;
+    }).join('\n');
+}
+
+function changeDirectory(dirName) {
+    if (dirName === '..') {
+        if (currentPath !== '~') {
+            const pathParts = currentPath.split('/');
+            pathParts.pop();
+            currentPath = pathParts.join('/') || '~';
+            currentDirectory = currentPath === '~' ? fileSystem.home : pathParts.reduce((acc, part) => acc[part], fileSystem.home);
+        }
+    } else if (currentDirectory[dirName] && typeof currentDirectory[dirName] === 'object') {
+        currentDirectory = currentDirectory[dirName];
+        currentPath = currentPath === '~' ? `~/${dirName}` : `${currentPath}/${dirName}`;
     } else {
-        return `~/${currentDirectory}`;
+        return 'No such directory';
+    }
+    updatePrompt();
+    return '';
+}
+
+function catFile(fileName) {
+    if (currentDirectory[fileName] && typeof currentDirectory[fileName] === 'string') {
+        let content = currentDirectory[fileName];
+        // Add clickable links for GitHub projects
+        if (fileName === 'github_projects.txt') {
+            content = content.replace(/(https:\/\/github\.com\/\S+)/g, '<span class="link" onclick="window.open(\'$1\', \'_blank\')">$1</span>');
+        }
+        return content;
+    } else {
+        return 'No such file';
     }
 }
 
-function fetchAndDisplayFile(file) {
-    fetch(`https://raw.githubusercontent.com/RParkerE/RParkerE.github.io/main/${file}`)
-        .then(response => response.text())
-        .then(data => {
-            outputDiv.innerHTML += `
-                <div>${data}</div>
-            `;
-        })
-        .catch(error => {
-            outputDiv.innerHTML += `
-                <div>Error fetching file '${file}'</div>
-            `;
-        });
-}
-
-function outputDirectoryContents(directory) {
-    switch (directory) {
-        case '~':
-            outputDiv.innerHTML += `
-                <div>Resume  Projects  AboutMe</div>
-            `;
-            break;
-        case 'Resume':
-            outputDiv.innerHTML += `
-                <div>AutomationTestAndSystemEngineer_NVIDIA.txt</div>
-                <div>ITNetworkDevelopmentAnalyst_DellEMC.txt</div>
-            `;
-            break;
-        case 'Projects':
-            outputDiv.innerHTML += `
-                <div>AutonomousDriving.proj</div>
-                <div>MonkeyBusiness.proj</div>
-                <div>ForFun.proj</div>
-                <div>LiFi-With-Arduino.proj</div>
-                <!-- Add more Projects as needed -->
-            `;
-            break;
-        case 'AboutMe':
-            outputDiv.innerHTML += `
-                <div>README.md</div>
-            `;
-            break;
+function processCommand(command) {
+    const [cmd, ...args] = command.trim().split(' ');
+    switch (cmd) {
+        case 'ls':
+            return listDirectory();
+        case 'cd':
+            return changeDirectory(args[0] || '~');
+        case 'cat':
+            return args[0] ? catFile(args[0]) : 'Usage: cat <filename>';
+        case 'help':
+            return 'Available commands: ls, cd, cat, help, clear';
+        case 'clear':
+            output.innerHTML = '';
+            return '';
         default:
-            outputDiv.innerHTML += `
-                <div>Invalid directory '${directory}'</div>
-            `;
+            return `Command not found: ${cmd}. Type 'help' for available commands.`;
     }
 }
 
-function outputProjectFileContents(file) {
-    switch (file) {
-        case 'AutonomousDriving.proj':
-            outputDiv.innerHTML += `
-                <div>Redirecting to AutonomousDriving GitHub repository...</div>
-            `;
-            window.location.href = "https://github.com/RParkerE/AutonomousDriving";
-            break;
-        case 'MonkeyBusiness.proj':
-            outputDiv.innerHTML += `
-                <div>Redirecting to MonkeyBusiness GitHub repository...</div>
-            `;
-            window.location.href = "https://github.com/RParkerE/MonkeyBusiness";
-            break;
-        case 'ForFun.proj':
-            outputDiv.innerHTML += `
-                <div>Redirecting to ForFun GitHub repository...</div>
-            `;
-            window.location.href = "https://github.com/RParkerE/ForFun";
-            break;
-        case 'LiFi-With-Arduino.proj':
-            outputDiv.innerHTML += `
-                <div>Redirecting to LiFi-With-Arduino GitHub repository...</div>
-            `;
-            window.location.href = "https://github.com/RParkerE/LiFi-With-Arduino";
-            break;
-        default:
-            outputDiv.innerHTML += `
-                <div>File '${file}' not found.</div>
-            `;
+userInput.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        const command = this.value;
+        printOutput(`<span id="prompt">${document.getElementById('prompt').textContent}</span> ${command}`);
+        const result = processCommand(command);
+        if (result) printOutput(result);
+        this.value = '';
     }
-}
+});
+
+// Initial message
+printOutput('Welcome to the Terminal Portfolio! Type "help" for available commands.');
+updatePrompt();
