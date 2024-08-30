@@ -77,44 +77,75 @@ function printOutput(text) {
     terminal.scrollTop = terminal.scrollHeight;
 }
 
-function listDirectory() {
-    return Object.keys(currentDirectory.children).map(item => {
-        const isDirectory = currentDirectory.children[item].type === 'directory';
+function resolvePath(path, startDir = currentDirectory) {
+    if (!path) return startDir;
+
+    const parts = path.split('/').filter(Boolean);
+    let dir = path.startsWith('/') ? fileSystem : startDir;
+
+    for (let part of parts) {
+        if (part === '..') {
+            dir = dir.parent || fileSystem;
+        } else if (part === '.') {
+            continue;
+        } else if (dir.children[part] && dir.children[part].type === 'directory') {
+            dir = dir.children[part];
+        } else if (dir.children[part] && dir.children[part].type === 'file') {
+            return dir.children[part]; 
+        } else {
+            return null;
+        }
+    }
+
+    return dir;
+}
+
+function listDirectory(path = '') {
+    const dir = resolvePath(path);
+    if (!dir || !dir.children) {
+        return `No such directory: ${path}`;
+    }
+
+    return Object.keys(dir.children).map(item => {
+        const isDirectory = dir.children[item].type === 'directory';
         return `<span class="${isDirectory ? 'directory' : 'file'}">${item}</span>`;
     }).join('\n');
 }
 
 function changeDirectory(path) {
-    if (!path) {
-        currentDirectory = fileSystem.children.home;
-        currentPath = '/home';
-        updatePrompt();
-        return '';
-    }
-
-    const parts = path.split('/').filter(Boolean);
-    let newDir = path.startsWith('/') ? fileSystem : currentDirectory;
-
-    for (let part of parts) {
-        if (part === '..') {
-            if (newDir.parent) {
-                newDir = newDir.parent;
-            } else if (newDir !== fileSystem) {
-                newDir = fileSystem;
-            } else {
-                return 'Already at root directory';
-            }
-        } else if (newDir.children[part] && newDir.children[part].type === 'directory') {
-            newDir = newDir.children[part];
-        } else {
-            return `No such directory: ${part}`;
-        }
+    const newDir = resolvePath(path);
+    if (!newDir) {
+        return `No such directory: ${path}`;
     }
 
     currentDirectory = newDir;
-    currentPath = getFullPath(currentDirectory);
+    currentPath = getFullPath(newDir);
     updatePrompt();
     return '';
+}
+
+function autocomplete(input) {
+    const [cmd, ...args] = input.split(' ');
+    let arg = args.join(' ');
+
+    if (cmd === 'cd' || cmd === 'ls' || cmd === 'cat') {
+        let dirPath = arg.split('/').slice(0, -1).join('/');
+        let dir = resolvePath(dirPath);
+        const prefix = dirPath ? dirPath + '/' : '';
+        const partial = arg.split('/').pop() || '';
+
+        if (dir && dir.children) { // Ensure dir has children
+            const matches = Object.keys(dir.children).filter(item => item.startsWith(partial));
+            if (matches.length === 1) {
+                return `${cmd} ${prefix}${matches[0]}`;
+            } else if (matches.length > 1) {
+                printOutput(matches.join('  '));
+                return input;
+            }
+        }
+    }
+
+    return input;
 }
 
 function getFullPath(dir) {
@@ -128,14 +159,18 @@ function getFullPath(dir) {
 }
 
 function catFile(fileName) {
-    if (currentDirectory.children[fileName] && currentDirectory.children[fileName].type === 'file') {
-        let content = currentDirectory.children[fileName].content;
-        if (fileName === 'github_projects.txt') {
+    const dirPath = fileName.split('/').slice(0, -1).join('/');
+    const file = fileName.split('/').pop();
+    const dir = resolvePath(dirPath);
+
+    if (dir && dir.children[file] && dir.children[file].type === 'file') {
+        let content = dir.children[file].content;
+        if (file === 'github_projects.txt') {
             content = content.replace(/(https:\/\/github\.com\/\S+)/g, '<span class="link" onclick="window.open(\'$1\', \'_blank\')">$1</span>');
         }
         return content;
     } else {
-        return 'No such file';
+        return `No such file: ${fileName}`;
     }
 }
 
@@ -143,10 +178,10 @@ function processCommand(command) {
     const [cmd, ...args] = command.trim().split(' ');
     switch (cmd) {
         case 'ls':
-            return listDirectory();
+            return listDirectory(args[0]); 
         case 'cd':
             const cdResult = changeDirectory(args[0]);
-            return cdResult ? cdResult : ''; // Return an empty string if cd was successful
+            return cdResult ? cdResult : ''; 
         case 'cat':
             return args[0] ? catFile(args[0]) : 'Usage: cat <filename>';
         case 'help':
